@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUJ Eats - Home</title>
+    <link rel="stylesheet" href="homeStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <button class="settings-btn" onclick="openSettings()">⚙️Settings</button>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+    </div>
+
+    <main class="main-content"></main>
+    <!-- Dark background overlay -->
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
+
+    <div class="bottom-nav">
+      <a href="#order">Order Food</a>
+      <a href="#comments">Restaurant Comments</a>
+      <a href="#driver">Accept Orders</a>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settings-panel" class="settings-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
+        >×</a
+      >
+      <a href="#">User Settings</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Log Out</a>
+    </div>
+
+    <script>
+      function openSettings() {
+        document.getElementById("settings-panel").style.width = "250px";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

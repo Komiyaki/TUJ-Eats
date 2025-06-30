@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.header-bar {
+  position: relative;
+  background-color: #a41e34;
+  height: 60px; /* thinner than login/register */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.settings-btn {
+  position: absolute;
+  left: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.settings-btn:hover {
+  color: #ffcccb;
+}
+
+.logo-background {
+  position: absolute;
+  opacity: 0.2;
+  height: 80px;
+  z-index: 0;
+}
+
+.header-text {
+  position: relative;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.main-content {
+  padding: 1rem;
+  text-align: center;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #a41e34;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+}
+
+.bottom-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.bottom-nav a:hover {
+  color: #ffcccb;
+}
+
+/* Settings side panel */
+.settings-panel {
+  height: calc(100% - 60px); /* subtract bottom nav height */
+  width: 0;
+  position: fixed;
+  z-index: 4; /* lower than bottom nav */
+  top: 0;
+  left: 0;
+  background-color: #a41e34;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px; /* space below header */
+}
+
+.settings-panel a {
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+.settings-panel a:hover {
+  background-color: #870d26;
+}
+
+.settings-panel .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+}
+
+/* ensure the bottom nav is always on top */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #a41e34;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  z-index: 5; /* higher than settings panel */
+}
+
+/* overlay for dimming background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 3; /* behind the settings panel, under the bottom nav */
+}
