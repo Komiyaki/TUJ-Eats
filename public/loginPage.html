@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="message" class="message"></div>
 <div class="header-bar">
   <img
     src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
@@ -31,5 +32,29 @@
   </form>
   
   <p>Don’t have an account? <a href="RegisterPage.html">Register here</a>.</p>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const messageDiv = document.getElementById("message");
+
+  if (params.has("registered")) {
+    messageDiv.textContent = "Registration successful! Please log in.";
+    messageDiv.style.color = "green";
+  }
+
+  if (params.get("error") === "invalid") {
+    messageDiv.textContent = "Invalid email/TUid or password.";
+    messageDiv.style.color = "red";
+  }
+
+  if (params.get("error") === "unauthorized") {
+    messageDiv.textContent = "You must log in first.";
+    messageDiv.style.color = "red";
+  }
+
+  if (params.get("error") === "notfound") {
+    messageDiv.textContent = "User not found. Please log in again.";
+    messageDiv.style.color = "red";
+  }
+</script>
 </body>
 </html>

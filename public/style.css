@@ -92,3 +92,11 @@ p a {
 p a:hover {
   color: #ffcccb;
 }
+
+.message {
+  background-color: white;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  height: 50px;
+}
