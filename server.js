@@ -11,8 +11,8 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads")); // 新增：讓圖片可以被訪問
+app.use(express.static("public")); // For HTML, CSS
+app.use("/uploads", express.static("uploads")); // For uploaded images
 app.use(session({
   secret: "tuj-eats-secret",
   resave: false,
@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// User data
+// User data helpers
 const USERS_FILE = "user.json";
 const readUsers = () => {
   if (!fs.existsSync(USERS_FILE)) return [];
@@ -38,10 +38,16 @@ const writeUsers = (users) => {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 };
 
+// Home route
+app.get("/", (req, res) => {
+  res.redirect("/loginPage.html");
+});
+
 // Register route
 app.post("/register", upload.single("student_id_image"), (req, res) => {
   const { tuid, email, first_name, last_name } = req.body;
   const imageFile = req.file?.filename;
+
   if (!tuid || !email || !first_name || !last_name || !imageFile) {
     return res.status(400).send("Missing required fields");
   }
@@ -58,7 +64,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
     first_name,
     last_name,
     image: imageFile,
-    password: "temp1234" // default password
+    password: "temp1234" // Default password
   };
 
   users.push(newUser);
@@ -90,7 +96,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/loginPage.html");
 });
 
-// Main page
+// Protected main page
 app.get("/main", (req, res) => {
   if (!req.session.userId) {
     return res.redirect("/loginPage.html?error=unauthorized");
@@ -102,7 +108,6 @@ app.get("/main", (req, res) => {
     return res.redirect("/loginPage.html?error=notfound");
   }
 
-  // dynamic
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
