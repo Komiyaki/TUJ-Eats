@@ -7,7 +7,7 @@ body {
 .header-bar {
   position: relative;
   background-color: #a41e34;
-  height: 60px; /* thinner than login/register */
+  height: 50px; /* thinner than login/register */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +20,7 @@ body {
   background: none;
   border: none;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 2;
 }
@@ -31,8 +31,8 @@ body {
 
 .logo-background {
   position: absolute;
-  opacity: 0.2;
-  height: 80px;
+  opacity: 0.5;
+  height: 60px;
   z-index: 0;
 }
 

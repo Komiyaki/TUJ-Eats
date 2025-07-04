@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Settings</title>
+    <link rel="stylesheet" href="settingsStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <span class="username">Username</span>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+      <a class="close-settings" href="MainScreen.html">×</a>
+    </div>
+
+    <main class="settings-content">
+      <button>Change Profile Picture</button>
+      <button>Favorites</button>
+      <button>Font Size</button>
+      <button>Change Password</button>
+      <button>Notifications</button>
+
+      <div class="dark-mode-toggle">
+        <label for="darkmode-switch">Dark Mode</label>
+        <input type="checkbox" id="darkmode-switch" />
+      </div>
+    </main>
+
+    <script>
+      // basic dark mode toggler
+      document
+        .getElementById("darkmode-switch")
+        .addEventListener("change", function () {
+          document.body.classList.toggle("dark-mode", this.checked);
+        });
+    </script>
+  </body>
+</html>
