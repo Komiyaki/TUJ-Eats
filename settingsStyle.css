@@ -99,3 +99,11 @@ body.dark-mode .settings-content button {
 body.dark-mode .settings-content button:hover {
   background-color: #777;
 }
+
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+body.dark-mode .header-bar {
+  background-color: #333;
+}

@@ -19,9 +19,7 @@
     </div>
 
     <main class="settings-content">
-      <button>Change Profile Picture</button>
       <button>Favorites</button>
-      <button>Font Size</button>
       <button>Change Password</button>
       <button>Notifications</button>
 
@@ -32,12 +30,23 @@
     </main>
 
     <script>
-      // basic dark mode toggler
-      document
-        .getElementById("darkmode-switch")
-        .addEventListener("change", function () {
-          document.body.classList.toggle("dark-mode", this.checked);
-        });
+      const switchEl = document.getElementById("darkmode-switch");
+
+      // on page load apply
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        switchEl.checked = true;
+      }
+
+      switchEl.addEventListener("change", function () {
+        if (this.checked) {
+          document.body.classList.add("dark-mode");
+          localStorage.setItem("darkMode", "enabled");
+        } else {
+          document.body.classList.remove("dark-mode");
+          localStorage.setItem("darkMode", "disabled");
+        }
+      });
     </script>
   </body>
 </html>

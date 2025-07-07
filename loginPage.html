@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TUJ Eats - Login</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div class="header-bar">
-  <img
-    src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
-    alt="TUJ Logo"
-    class="logo-background"
-  />
-  <h1 class="header-text">TUJ Eats</h1>
-</div>
-  
-  <form action="/login" method="post">
-    <div>
-      <label for="identifier">Email or TUid:</label>
-      <input type="text" id="identifier" name="identifier" required />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUJ Eats - Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
     </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
-    </div>
-    <div>
-      <button type="submit">Login</button>
-    </div>
-  </form>
-  
-  <p>Don’t have an account? <a href="RegisterPage.html">Register here</a>.</p>
-</body>
+
+    <form action="/login" method="post">
+      <div>
+        <label for="identifier">Email or TUid:</label>
+        <input type="text" id="identifier" name="identifier" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <div>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+
+    <p>Don’t have an account? <a href="RegisterPage.html">Register here</a>.</p>
+    <script>
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+  </body>
 </html>

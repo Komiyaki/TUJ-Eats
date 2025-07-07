@@ -1,7 +1,8 @@
 body {
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
-  background: url('https://static.wixstatic.com/media/66b767_868e44f136a542768437ff0c424d08f2~mv2_d_2880_1920_s_2.jpg/v1/fill/w_1000%2Ch_667%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01/66b767_868e44f136a542768437ff0c424d08f2~mv2_d_2880_1920_s_2.jpg') no-repeat center center fixed;
+  background: url("https://static.wixstatic.com/media/66b767_868e44f136a542768437ff0c424d08f2~mv2_d_2880_1920_s_2.jpg/v1/fill/w_1000%2Ch_667%2Cal_c%2Cq_85%2Cusm_0.66_1.00_0.01/66b767_868e44f136a542768437ff0c424d08f2~mv2_d_2880_1920_s_2.jpg")
+    no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -15,7 +16,7 @@ body::before {
 
 .header-bar {
   position: relative;
-  background-color: #A41E34;
+  background-color: #a41e34;
   height: 120px;
   display: flex;
   align-items: center;
@@ -67,7 +68,7 @@ form input {
 form button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #A41E34;
+  background-color: #a41e34;
   color: white;
   border: none;
   border-radius: 4px;
@@ -91,4 +92,37 @@ p a {
 
 p a:hover {
   color: #ffcccb;
+}
+
+/* Dark mode overrides */
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+
+body.dark-mode .header-bar {
+  background-color: #333;
+}
+
+body.dark-mode form {
+  background-color: #333;
+  color: #eee;
+}
+
+body.dark-mode form label {
+  color: #eee;
+}
+
+body.dark-mode form input {
+  background-color: #555;
+  color: #eee;
+  border: 1px solid #888;
+}
+
+body.dark-mode form input::placeholder {
+  color: #ccc;
+}
+
+body.dark-mode p a {
+  color: #ccc;
 }

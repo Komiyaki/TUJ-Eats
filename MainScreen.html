@@ -23,7 +23,7 @@
 
     <div class="bottom-nav">
       <a href="#order">Order Food</a>
-      <a href="#comments">Restaurant Comments</a>
+      <a href="#activity">Activity </a>
       <a href="#driver">Accept Orders</a>
     </div>
 
@@ -32,9 +32,9 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
         >×</a
       >
-      <a href="#">User Settings</a>
-      <a href="#">Terms & Conditions</a>
-      <a href="#">Log Out</a>
+      <a href="userSettings.html">User Settings</a>
+      <a href="TermsAndCond.html">Terms & Conditions</a>
+      <a href="loginPage.html">Log Out</a>
     </div>
 
     <script>
@@ -45,6 +45,11 @@
       function closeSettings() {
         document.getElementById("settings-panel").style.width = "0";
         document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+    <script>
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
       }
     </script>
   </body>

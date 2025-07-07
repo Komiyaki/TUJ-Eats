@@ -127,3 +127,28 @@ body {
   display: none;
   z-index: 3; /* behind the settings panel, under the bottom nav */
 }
+
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+
+body.dark-mode .header-bar {
+  background-color: #333;
+}
+
+body.dark-mode .bottom-nav {
+  background-color: #333;
+}
+
+body.dark-mode .settings-panel {
+  background-color: #333;
+}
+
+body.dark-mode .settings-panel a {
+  color: #eee;
+}
+
+body.dark-mode .settings-panel a:hover {
+  background-color: #555;
+}
