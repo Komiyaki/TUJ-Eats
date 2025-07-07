@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Settings</title>
+    <link rel="stylesheet" href="settingsStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <span class="username">Username</span>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+      <a class="close-settings" href="MainScreen.html">×</a>
+    </div>
+
+    <main class="settings-content">
+      <a href="favorites.html">
+        <button type="button">Favorites</button>
+      </a>
+      <a href="changePassword.html">
+        <button type="button">Change Password</button>
+      </a>
+      <button>Notifications</button>
+
+      <div class="dark-mode-toggle">
+        <label for="darkmode-switch">Dark Mode</label>
+        <input type="checkbox" id="darkmode-switch" />
+      </div>
+    </main>
+
+    <script>
+      const switchEl = document.getElementById("darkmode-switch");
+
+      // on page load apply
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+        switchEl.checked = true;
+      }
+
+      switchEl.addEventListener("change", function () {
+        if (this.checked) {
+          document.body.classList.add("dark-mode");
+          localStorage.setItem("darkMode", "enabled");
+        } else {
+          document.body.classList.remove("dark-mode");
+          localStorage.setItem("darkMode", "disabled");
+        }
+      });
+    </script>
+  </body>
+</html>

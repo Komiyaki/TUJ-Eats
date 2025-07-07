@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.header-bar {
+  position: relative;
+  background-color: #a41e34;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.username {
+  position: absolute;
+  left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-background {
+  position: absolute;
+  opacity: 0.2;
+  height: 50px;
+  z-index: 0;
+}
+
+.header-text {
+  position: relative;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.close-settings {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.close-settings:hover {
+  color: #ffcccb;
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.settings-content button {
+  width: 200px;
+  padding: 0.75rem;
+  background-color: #a41e34;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.settings-content button:hover {
+  background-color: #870d26;
+}
+
+.dark-mode-toggle {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.dark-mode-toggle label {
+  margin-right: 0.5rem;
+}
+
+/* dark mode styles */
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+
+body.dark-mode .header-bar {
+  background-color: #333;
+}
+
+body.dark-mode .settings-content button {
+  background-color: #555;
+}
+
+body.dark-mode .settings-content button:hover {
+  background-color: #777;
+}
+
+body.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+body.dark-mode .header-bar {
+  background-color: #333;
+}
