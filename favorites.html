@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorites</title>
+    <link rel="stylesheet" href="homeStyle.css" />
+    <link rel="stylesheet" href="favoritesStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">Favorites</h1>
+      <a class="close-favorites" href="MainScreen.html" aria-label="Close">×</a>
+    </div>
+
+    <main class="favorites-list">
+      <p class="empty-message">
+        No favorites yet. Start adding your favorite restaurants!
+      </p>
+
+      <!-- Example static favorite restaurant for testing -->
+      <!--
+      <div class="favorite-item">
+        <img src="restaurant-image.jpg" alt="Restaurant Logo" />
+        <div class="favorite-details">
+          <h3>Awesome Pizza</h3>
+          <p>Delicious stone-baked pizza in Tokyo</p>
+        </div>
+        <button class="unfavorite-btn">Unfavorite</button>
+      </div>
+      -->
+    </main>
+
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
+    <div id="settings-panel" class="settings-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
+        >×</a
+      >
+      <a href="userSettings.html">User Settings</a>
+      <a href="TermsAndCond.html">Terms & Conditions</a>
+      <a href="MainScreen.html">Home</a>
+    </div>
+
+    <script>
+      function openSettings() {
+        document.getElementById("settings-panel").style.width = "250px";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+      // dark mode on load
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+  </body>
+</html>
