@@ -34,5 +34,23 @@
     "last_name": "g",
     "image": "1751594300344-å¼.jpg",
     "password": "temp1234"
+  },
+  {
+    "id": "3f09e8f5-3030-461c-a661-2f69127dcb1c",
+    "tuid": "13",
+    "email": "SF@F.cs",
+    "first_name": "asd",
+    "last_name": "sad",
+    "image": "1751861105269-å¼.jpg",
+    "password": "temp1234"
+  },
+  {
+    "id": "e7a2d0f2-4cb2-4927-b7c0-da6cc02caded",
+    "tuid": "1235417",
+    "email": "tup@hjhh.csd",
+    "first_name": "sahil",
+    "last_name": "farid",
+    "image": "1751861146382-å¼.jpg",
+    "password": "temp1234"
   }
 ]
