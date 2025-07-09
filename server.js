@@ -29,45 +29,27 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// User data helpers
+// Helpers to read/write user data
 const USERS_FILE = "user.json";
+const RESTAURANT_FILE = "restaurant.json";
+
 const readUsers = () => {
   if (!fs.existsSync(USERS_FILE)) return [];
   return JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
 };
+
 const writeUsers = (users) => {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 };
 
-// Hardcoded restaurant data
-const restaurants = [
-  {
-    id: "1",
-    name: "Sakura Sushi",
-    category: "Japanese",
-    address: "1-2-3 Shibuya, Tokyo",
-    description: "Fresh sushi made by master chefs.",
-    image: "sakura.jpg"
-  },
-  {
-    id: "2",
-    name: "Tandoori Flame",
-    category: "Indian",
-    address: "4-5-6 Akihabara, Tokyo",
-    description: "Authentic Indian curry and naan.",
-    image: "tandoori.jpg"
-  },
-  {
-    id: "3",
-    name: "Burger Bros",
-    category: "American",
-    address: "7-8-9 Roppongi, Tokyo",
-    description: "Juicy burgers and crispy fries.",
-    image: "burger.jpg"
-  }
-];
+const readRestaurants = () => {
+  if (!fs.existsSync(RESTAURANT_FILE)) return [];
+  return JSON.parse(fs.readFileSync(RESTAURANT_FILE, "utf8"));
+};
 
-// Home route
+// Routes
+
+// Redirect home to login
 app.get("/", (req, res) => {
   res.redirect("/loginPage.html");
 });
@@ -104,7 +86,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
 // Login route
 app.post("/login", (req, res) => {
   const { identifier, password } = req.body;
-  let users = readUsers();
+  const users = readUsers();
 
   const user = users.find(u =>
     (u.email === identifier || u.tuid === identifier) &&
@@ -125,7 +107,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/loginPage.html");
 });
 
-// Protected main page
+// Main protected page
 app.get("/main", (req, res) => {
   if (!req.session.userId) {
     return res.redirect("/loginPage.html?error=unauthorized");
@@ -136,6 +118,8 @@ app.get("/main", (req, res) => {
   if (!user) {
     return res.redirect("/loginPage.html?error=notfound");
   }
+
+  const restaurants = readRestaurants();
 
   const restaurantHtml = restaurants.map(r => `
     <div class="restaurant">
@@ -175,7 +159,7 @@ app.get("/main", (req, res) => {
   `);
 });
 
-// Start server
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
