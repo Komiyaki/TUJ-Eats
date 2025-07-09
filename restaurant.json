@@ -5,7 +5,7 @@
     "category": "Japanese",
     "address": "1-2-3 Shibuya, Tokyo",
     "description": "Fresh sushi made by master chefs.",
-    "image": "sakura.jpg"
+    "image": "https://miasanfoodies.de/wp-content/uploads/2022/06/sushi-restaurant-muenchen-samsushiandmeat.jpg"
   },
   {
     "id": "2",
@@ -13,6 +13,6 @@
     "category": "Indian",
     "address": "4-5-6 Akihabara, Tokyo",
     "description": "Authentic Indian curry and naan.",
-    "image": "tandoori.jpg"
+    "image": "https://tse2.mm.bing.net/th/id/OIP.TzBwNBwJ-eiKOYnQnNrdoQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
   }
 ]

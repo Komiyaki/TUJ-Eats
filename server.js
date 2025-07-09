@@ -126,7 +126,7 @@ app.get("/main", (req, res) => {
       <h2>${r.name}</h2>
       <p><strong>Category:</strong> ${r.category}</p>
       <p><strong>Address:</strong> ${r.address}</p>
-      <img src="/uploads/restaurants/${r.image}" alt="${r.name}" width="300" />
+      <img src="${r.image.startsWith('http') ? r.image : '/uploads/restaurants/' + r.image}" alt="${r.name}" width="300" />
       <p>${r.description}</p>
     </div>
   `).join("");

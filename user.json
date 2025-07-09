@@ -61,5 +61,14 @@
     "last_name": "a",
     "image": "1752033020653-å¼.jpg",
     "password": "temp1234"
+  },
+  {
+    "id": "f95da056-3a0e-4ff6-b3e6-949f7fdf8abc",
+    "tuid": "farid",
+    "email": "114@fa.cj",
+    "first_name": "farid",
+    "last_name": "farid",
+    "image": "1752033964885-å¼.jpg",
+    "password": "temp1234"
   }
 ]
