@@ -13,6 +13,7 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); // For HTML, CSS
 app.use("/uploads", express.static("uploads")); // For uploaded images
+app.use("/uploads/restaurants", express.static("uploads/restaurants")); // For restaurant images
 app.use(session({
   secret: "tuj-eats-secret",
   resave: false,
@@ -28,17 +29,27 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// User data helpers
+// Helpers to read/write user data
 const USERS_FILE = "user.json";
+const RESTAURANT_FILE = "restaurant.json";
+
 const readUsers = () => {
   if (!fs.existsSync(USERS_FILE)) return [];
   return JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
 };
+
 const writeUsers = (users) => {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 };
 
-// Home route
+const readRestaurants = () => {
+  if (!fs.existsSync(RESTAURANT_FILE)) return [];
+  return JSON.parse(fs.readFileSync(RESTAURANT_FILE, "utf8"));
+};
+
+// Routes
+
+// Redirect home to login
 app.get("/", (req, res) => {
   res.redirect("/loginPage.html");
 });
@@ -64,7 +75,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
     first_name,
     last_name,
     image: imageFile,
-    password: "temp1234" // Default password
+    password: "temp1234"
   };
 
   users.push(newUser);
@@ -75,7 +86,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
 // Login route
 app.post("/login", (req, res) => {
   const { identifier, password } = req.body;
-  let users = readUsers();
+  const users = readUsers();
 
   const user = users.find(u =>
     (u.email === identifier || u.tuid === identifier) &&
@@ -96,7 +107,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/loginPage.html");
 });
 
-// Protected main page
+// Main protected page
 app.get("/main", (req, res) => {
   if (!req.session.userId) {
     return res.redirect("/loginPage.html?error=unauthorized");
@@ -108,12 +119,24 @@ app.get("/main", (req, res) => {
     return res.redirect("/loginPage.html?error=notfound");
   }
 
+  const restaurants = readRestaurants();
+
+  const restaurantHtml = restaurants.map(r => `
+    <div class="restaurant">
+      <h2>${r.name}</h2>
+      <p><strong>Category:</strong> ${r.category}</p>
+      <p><strong>Address:</strong> ${r.address}</p>
+      <img src="${r.image.startsWith('http') ? r.image : '/uploads/restaurants/' + r.image}" alt="${r.name}" width="300" />
+      <p>${r.description}</p>
+    </div>
+  `).join("");
+
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8" />
-      <title>Welcome</title>
+      <title>Main</title>
       <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
@@ -124,14 +147,19 @@ app.get("/main", (req, res) => {
       <div>
         <p>TUid: ${user.tuid}</p>
         <p>Email: ${user.email}</p>
-        <img src="/uploads/${user.image}" alt="Student ID" width="300" />
+        <img src="/uploads/${user.image}" alt="Student ID" width="200" />
       </div>
+
+      <hr />
+
+      <h2>Restaurant List</h2>
+      ${restaurantHtml}
     </body>
     </html>
   `);
 });
 
-// Start server
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
