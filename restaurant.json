@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "Sakura Sushi",
+    "category": "Japanese",
+    "address": "1-2-3 Shibuya, Tokyo",
+    "description": "Fresh sushi made by master chefs.",
+    "image": "sakura.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Tandoori Flame",
+    "category": "Indian",
+    "address": "4-5-6 Akihabara, Tokyo",
+    "description": "Authentic Indian curry and naan.",
+    "image": "tandoori.jpg"
+  }
+]

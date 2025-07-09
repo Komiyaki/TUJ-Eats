@@ -13,6 +13,7 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); // For HTML, CSS
 app.use("/uploads", express.static("uploads")); // For uploaded images
+app.use("/uploads/restaurants", express.static("uploads/restaurants")); // For restaurant images
 app.use(session({
   secret: "tuj-eats-secret",
   resave: false,
@@ -37,6 +38,34 @@ const readUsers = () => {
 const writeUsers = (users) => {
   fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 };
+
+// Hardcoded restaurant data
+const restaurants = [
+  {
+    id: "1",
+    name: "Sakura Sushi",
+    category: "Japanese",
+    address: "1-2-3 Shibuya, Tokyo",
+    description: "Fresh sushi made by master chefs.",
+    image: "sakura.jpg"
+  },
+  {
+    id: "2",
+    name: "Tandoori Flame",
+    category: "Indian",
+    address: "4-5-6 Akihabara, Tokyo",
+    description: "Authentic Indian curry and naan.",
+    image: "tandoori.jpg"
+  },
+  {
+    id: "3",
+    name: "Burger Bros",
+    category: "American",
+    address: "7-8-9 Roppongi, Tokyo",
+    description: "Juicy burgers and crispy fries.",
+    image: "burger.jpg"
+  }
+];
 
 // Home route
 app.get("/", (req, res) => {
@@ -64,7 +93,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
     first_name,
     last_name,
     image: imageFile,
-    password: "temp1234" // Default password
+    password: "temp1234"
   };
 
   users.push(newUser);
@@ -108,12 +137,22 @@ app.get("/main", (req, res) => {
     return res.redirect("/loginPage.html?error=notfound");
   }
 
+  const restaurantHtml = restaurants.map(r => `
+    <div class="restaurant">
+      <h2>${r.name}</h2>
+      <p><strong>Category:</strong> ${r.category}</p>
+      <p><strong>Address:</strong> ${r.address}</p>
+      <img src="/uploads/restaurants/${r.image}" alt="${r.name}" width="300" />
+      <p>${r.description}</p>
+    </div>
+  `).join("");
+
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8" />
-      <title>Welcome</title>
+      <title>Main</title>
       <link rel="stylesheet" href="/style.css" />
     </head>
     <body>
@@ -124,8 +163,13 @@ app.get("/main", (req, res) => {
       <div>
         <p>TUid: ${user.tuid}</p>
         <p>Email: ${user.email}</p>
-        <img src="/uploads/${user.image}" alt="Student ID" width="300" />
+        <img src="/uploads/${user.image}" alt="Student ID" width="200" />
       </div>
+
+      <hr />
+
+      <h2>Restaurant List</h2>
+      ${restaurantHtml}
     </body>
     </html>
   `);
