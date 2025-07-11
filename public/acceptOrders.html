@@ -45,7 +45,6 @@
       </div>
     </main>
 
-
     <div id="restaurant-panel" class="restaurant-panel">
       <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
       <div class="panel-content">
@@ -90,13 +89,13 @@
       function openPanel(name) {
         document.getElementById("restaurant-panel").classList.add("open");
         document.querySelector(".panel-content h2").textContent = name;
-        document.querySelector(".panel-content p").textContent = "Here are some reviews about " + name + "...";
+        document.querySelector(".panel-content p").textContent =
+          "Here are some reviews about " + name + "...";
       }
 
       function closePanel() {
         document.getElementById("restaurant-panel").classList.remove("open");
       }
-
     </script>
   </body>
 </html>

@@ -78,10 +78,6 @@
       <div class="restaurant-card" onclick="openPanel('Restaurant 20')">
         Restaurant 20
       </div>
-
-
-
-
     </main>
 
     <div id="restaurant-panel" class="restaurant-panel">
@@ -128,13 +124,13 @@
       function openPanel(name) {
         document.getElementById("restaurant-panel").classList.add("open");
         document.querySelector(".panel-content h2").textContent = name;
-        document.querySelector(".panel-content p").textContent = "Here are some reviews about " + name + "...";
+        document.querySelector(".panel-content p").textContent =
+          "Here are some reviews about " + name + "...";
       }
 
       function closePanel() {
         document.getElementById("restaurant-panel").classList.remove("open");
       }
-
     </script>
   </body>
 </html>

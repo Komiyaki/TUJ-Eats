@@ -153,8 +153,6 @@ body.dark-mode .settings-panel a:hover {
   background-color: #555;
 }
 
-
-
 /* from here is for the page orderfood.html */
 
 .restaurant-grid {
@@ -163,9 +161,8 @@ body.dark-mode .settings-panel a:hover {
   gap: 1rem;
   padding: 1rem;
   overflow-y: auto;
-  height: calc(100vh - 120px); 
+  height: calc(100vh - 120px);
 }
-
 
 .restaurant-card {
   background-color: white;
@@ -173,10 +170,9 @@ body.dark-mode .settings-panel a:hover {
   padding: 1rem;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   min-height: 100px;
 }
-
 
 .restaurant-card:hover {
   background-color: #f0f0f0;
@@ -193,13 +189,12 @@ body.dark-mode .settings-panel a:hover {
   transition: 0.3s;
   z-index: 10;
   padding-top: 60px;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 .restaurant-panel.open {
   width: 25%;
   min-width: 300px; /* fallback */
 }
-
 
 .restaurant-panel .closebtn {
   position: absolute;
@@ -209,7 +204,6 @@ body.dark-mode .settings-panel a:hover {
   text-decoration: none;
   color: black;
 }
-
 
 /* from here is the activity.html */
 .activity-content {
@@ -237,7 +231,7 @@ body.dark-mode .settings-panel a:hover {
   background-color: white;
   padding: 1rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* from here is the activity page */
@@ -262,7 +256,7 @@ body.dark-mode .settings-panel a:hover {
   background-color: white;
   padding: 1rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .request-card button {
@@ -278,4 +272,3 @@ body.dark-mode .settings-panel a:hover {
 .request-card button:hover {
   background-color: #870d26;
 }
-
