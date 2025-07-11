@@ -1,0 +1,17 @@
+[
+  {
+    "id": "11930253-705e-41bc-9474-34ec0ed97c00",
+    "restaurantId": "1",
+    "userId": "test-user-id",
+    "comment": "Great ramen!",
+    "timestamp": "2025-07-11T03:58:06.570Z"
+  },
+  {
+    "id": "43bccc19-5370-4e1b-93ac-9626894abe7e",
+    "restaurantId": "1",
+    "userId": "f95da056-3a0e-4ff6-b3e6-949f7fdf8abc",
+    "userName": "farid farid",
+    "comment": "This place is awesome!",
+    "timestamp": "2025-07-11T04:11:04.394Z"
+  }
+]

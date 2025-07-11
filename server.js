@@ -11,9 +11,10 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public")); // For HTML, CSS
-app.use("/uploads", express.static("uploads")); // For uploaded images
-app.use("/uploads/restaurants", express.static("uploads/restaurants")); // For restaurant images
+app.use(bodyParser.json());
+app.use(express.static("public"));
+app.use("/uploads", express.static("uploads"));
+app.use("/uploads/restaurants", express.static("uploads/restaurants"));
 app.use(session({
   secret: "tuj-eats-secret",
   resave: false,
@@ -29,32 +30,27 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Helpers to read/write user data
+// File paths
 const USERS_FILE = "user.json";
 const RESTAURANT_FILE = "restaurant.json";
+const COMMENTS_FILE = "comments.json";
 
-const readUsers = () => {
-  if (!fs.existsSync(USERS_FILE)) return [];
-  return JSON.parse(fs.readFileSync(USERS_FILE, "utf8"));
+// Helpers
+const readJSON = (filePath) => {
+  if (!fs.existsSync(filePath)) return [];
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 };
 
-const writeUsers = (users) => {
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
-};
-
-const readRestaurants = () => {
-  if (!fs.existsSync(RESTAURANT_FILE)) return [];
-  return JSON.parse(fs.readFileSync(RESTAURANT_FILE, "utf8"));
+const writeJSON = (filePath, data) => {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };
 
 // Routes
 
-// Redirect home to login
 app.get("/", (req, res) => {
   res.redirect("/loginPage.html");
 });
 
-// Register route
 app.post("/register", upload.single("student_id_image"), (req, res) => {
   const { tuid, email, first_name, last_name } = req.body;
   const imageFile = req.file?.filename;
@@ -63,7 +59,7 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
     return res.status(400).send("Missing required fields");
   }
 
-  let users = readUsers();
+  const users = readJSON(USERS_FILE);
   if (users.find(u => u.tuid === tuid || u.email === email)) {
     return res.redirect("/RegisterPage.html?error=exists");
   }
@@ -79,14 +75,13 @@ app.post("/register", upload.single("student_id_image"), (req, res) => {
   };
 
   users.push(newUser);
-  writeUsers(users);
+  writeJSON(USERS_FILE, users);
   res.redirect("/loginPage.html?registered=1");
 });
 
-// Login route
 app.post("/login", (req, res) => {
   const { identifier, password } = req.body;
-  const users = readUsers();
+  const users = readJSON(USERS_FILE);
 
   const user = users.find(u =>
     (u.email === identifier || u.tuid === identifier) &&
@@ -101,26 +96,23 @@ app.post("/login", (req, res) => {
   }
 });
 
-// Logout
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/loginPage.html");
 });
 
-// Main protected page
 app.get("/main", (req, res) => {
   if (!req.session.userId) {
     return res.redirect("/loginPage.html?error=unauthorized");
   }
 
-  const users = readUsers();
+  const users = readJSON(USERS_FILE);
   const user = users.find(u => u.id === req.session.userId);
   if (!user) {
     return res.redirect("/loginPage.html?error=notfound");
   }
 
-  const restaurants = readRestaurants();
-
+  const restaurants = readJSON(RESTAURANT_FILE);
   const restaurantHtml = restaurants.map(r => `
     <div class="restaurant">
       <h2>${r.name}</h2>
@@ -149,9 +141,7 @@ app.get("/main", (req, res) => {
         <p>Email: ${user.email}</p>
         <img src="/uploads/${user.image}" alt="Student ID" width="200" />
       </div>
-
       <hr />
-
       <h2>Restaurant List</h2>
       ${restaurantHtml}
     </body>
@@ -159,7 +149,53 @@ app.get("/main", (req, res) => {
   `);
 });
 
-// Start the server
+// POST /comment - only if logged in
+app.post("/comment", (req, res) => {
+  const { restaurantId, comment } = req.body;
+  const userId = req.session.userId;
+
+  if (!userId) {
+    return res.status(401).send("Unauthorized: Please log in first");
+  }
+
+  if (!restaurantId || !comment) {
+    return res.status(400).send("Missing fields");
+  }
+
+  const users = readJSON(USERS_FILE);
+  const user = users.find(u => u.id === userId);
+  if (!user) {
+    return res.status(403).send("User not found");
+  }
+
+  const comments = readJSON(COMMENTS_FILE);
+  comments.push({
+    id: uuid(),
+    restaurantId,
+    userId,
+    userName: `${user.first_name} ${user.last_name}`,
+    comment,
+    timestamp: new Date().toISOString()
+  });
+  writeJSON(COMMENTS_FILE, comments);
+
+  res.status(200).send("Comment saved");
+});
+
+// GET /me - check session
+app.get("/me", (req, res) => {
+  if (!req.session.userId) {
+    return res.json({ loggedIn: false });
+  }
+  const users = readJSON(USERS_FILE);
+  const user = users.find(u => u.id === req.session.userId);
+  if (!user) {
+    return res.json({ loggedIn: false });
+  }
+  res.json({ loggedIn: true, user });
+});
+
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
