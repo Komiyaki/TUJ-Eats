@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUJ Eats - Home</title>
+    <link rel="stylesheet" href="homeStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <button class="settings-btn" onclick="openSettings()">⚙️Settings</button>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+    </div>
+
+    <main class="restaurant-grid">
+      <div class="restaurant-card" onclick="openPanel('Restaurant 1')">
+        Restaurant 1
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 2')">
+        Restaurant 2
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 3')">
+        Restaurant 3
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 4')">
+        Restaurant 4
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 5')">
+        Restaurant 5
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 6')">
+        Restaurant 6
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 7')">
+        Restaurant 7
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 8')">
+        Restaurant 8
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 9')">
+        Restaurant 9
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 10')">
+        Restaurant 10
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 11')">
+        Restaurant 11
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 12')">
+        Restaurant 12
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 13')">
+        Restaurant 13
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 14')">
+        Restaurant 14
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 15')">
+        Restaurant 15
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 16')">
+        Restaurant 16
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 17')">
+        Restaurant 17
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 18')">
+        Restaurant 18
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 19')">
+        Restaurant 19
+      </div>
+      <div class="restaurant-card" onclick="openPanel('Restaurant 20')">
+        Restaurant 20
+      </div>
+
+
+
+
+    </main>
+
+    <div id="restaurant-panel" class="restaurant-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+      <div class="panel-content">
+        <h2>Restaurant Name</h2>
+        <p>Reviews and details here...</p>
+        <button>Request Order</button>
+      </div>
+    </div>
+    <!-- Dark background overlay -->
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
+
+    <div class="bottom-nav">
+      <a href="orderFood.html">Order Food</a>
+      <a href="activity.html">Activity</a>
+      <a href="acceptOrders.html">Accept Orders</a>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settings-panel" class="settings-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
+        >×</a
+      >
+      <a href="userSettings.html">User Settings</a>
+      <a href="TermsAndCond.html">Terms & Conditions</a>
+      <a href="loginPage.html">Log Out</a>
+    </div>
+
+    <script>
+      function openSettings() {
+        document.getElementById("settings-panel").style.width = "250px";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+    <script>
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+      function openPanel(name) {
+        document.getElementById("restaurant-panel").classList.add("open");
+        document.querySelector(".panel-content h2").textContent = name;
+        document.querySelector(".panel-content p").textContent = "Here are some reviews about " + name + "...";
+      }
+
+      function closePanel() {
+        document.getElementById("restaurant-panel").classList.remove("open");
+      }
+
+    </script>
+  </body>
+</html>

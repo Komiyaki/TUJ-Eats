@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUJ Eats - Home</title>
+    <link rel="stylesheet" href="homeStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <button class="settings-btn" onclick="openSettings()">⚙️Settings</button>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+    </div>
+
+    <main class="accept-orders-content">
+      <h2>Available Requests</h2>
+      <div class="requests-list">
+        <div class="request-card">
+          <p><strong>Item:</strong> Starbucks Coffee</p>
+          <p><strong>Requested by:</strong> Student A</p>
+          <p><strong>Pickup Location:</strong> Starbucks Shibuya</p>
+          <p><strong>Reward:</strong> ¥500</p>
+          <button>Accept Order</button>
+        </div>
+        <div class="request-card">
+          <p><strong>Item:</strong> Convenience Store Snacks</p>
+          <p><strong>Requested by:</strong> Student B</p>
+          <p><strong>Pickup Location:</strong> 7-Eleven Ebisu</p>
+          <p><strong>Reward:</strong> ¥300</p>
+          <button>Accept Order</button>
+        </div>
+        <div class="request-card">
+          <p><strong>Item:</strong> Pharmacy Medicine</p>
+          <p><strong>Requested by:</strong> Student C</p>
+          <p><strong>Pickup Location:</strong> Matsumoto Kiyoshi</p>
+          <p><strong>Reward:</strong> ¥700</p>
+          <button>Accept Order</button>
+        </div>
+        <!-- Add more requests as needed -->
+      </div>
+    </main>
+
+
+    <div id="restaurant-panel" class="restaurant-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+      <div class="panel-content">
+        <h2>Restaurant Name</h2>
+        <p>Reviews and details here...</p>
+        <button>Request Order</button>
+      </div>
+    </div>
+    <!-- Dark background overlay -->
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
+
+    <div class="bottom-nav">
+      <a href="orderFood.html">Order Food</a>
+      <a href="activity.html">Activity</a>
+      <a href="acceptOrders.html">Accept Orders</a>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settings-panel" class="settings-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
+        >×</a
+      >
+      <a href="userSettings.html">User Settings</a>
+      <a href="TermsAndCond.html">Terms & Conditions</a>
+      <a href="loginPage.html">Log Out</a>
+    </div>
+
+    <script>
+      function openSettings() {
+        document.getElementById("settings-panel").style.width = "250px";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
+    <script>
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+      function openPanel(name) {
+        document.getElementById("restaurant-panel").classList.add("open");
+        document.querySelector(".panel-content h2").textContent = name;
+        document.querySelector(".panel-content p").textContent = "Here are some reviews about " + name + "...";
+      }
+
+      function closePanel() {
+        document.getElementById("restaurant-panel").classList.remove("open");
+      }
+
+    </script>
+  </body>
+</html>

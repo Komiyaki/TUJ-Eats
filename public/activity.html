@@ -17,7 +17,35 @@
       <h1 class="header-text">TUJ Eats</h1>
     </div>
 
-    <main class="main-content"></main>
+    <main class="activity-content">
+      <section class="activity-section">
+        <h2>My Requests</h2>
+        <div class="activity-list">
+          <div class="activity-card">Requested: Starbucks Coffee</div>
+          <div class="activity-card">Requested: Convenience Store Snacks</div>
+          <div class="activity-card">Requested: Pharmacy Medicine</div>
+        </div>
+      </section>
+
+      <section class="activity-section">
+        <h2>My Deliveries</h2>
+        <div class="activity-list">
+          <div class="activity-card">Delivered: Sushi Set</div>
+          <div class="activity-card">Delivered: Ramen Order</div>
+          <div class="activity-card">Delivered: Grocery Bag</div>
+        </div>
+      </section>
+    </main>
+
+
+    <div id="restaurant-panel" class="restaurant-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+      <div class="panel-content">
+        <h2>Restaurant Name</h2>
+        <p>Reviews and details here...</p>
+        <button>Request Order</button>
+      </div>
+    </div>
     <!-- Dark background overlay -->
     <div id="overlay" class="overlay" onclick="closeSettings()"></div>
 
@@ -26,7 +54,6 @@
       <a href="activity.html">Activity</a>
       <a href="acceptOrders.html">Accept Orders</a>
     </div>
-
 
     <!-- Settings Side Panel -->
     <div id="settings-panel" class="settings-panel">
@@ -52,6 +79,16 @@
       if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
       }
+      function openPanel(name) {
+        document.getElementById("restaurant-panel").classList.add("open");
+        document.querySelector(".panel-content h2").textContent = name;
+        document.querySelector(".panel-content p").textContent = "Here are some reviews about " + name + "...";
+      }
+
+      function closePanel() {
+        document.getElementById("restaurant-panel").classList.remove("open");
+      }
+
     </script>
   </body>
 </html>
