@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TUJ Eats - Home</title>
-    <link rel="stylesheet" href="homeStyle.css" />
+    <title>TUJ Eats - Activity</title>
+    <link rel="stylesheet" href="activityStyle.css" />
   </head>
   <body>
     <div class="header-bar">
@@ -18,35 +18,52 @@
     </div>
 
     <main class="activity-content">
+      <!-- My Requests Section -->
       <section class="activity-section">
         <h2>My Requests</h2>
-        <div class="activity-list">
-          <div class="activity-card">Requested: Starbucks Coffee</div>
-          <div class="activity-card">Requested: Convenience Store Snacks</div>
-          <div class="activity-card">Requested: Pharmacy Medicine</div>
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Starbucks Coffee</div>
+            <div class="order-date">July 10, 2025</div>
+          </div>
+          <div class="order-text">Order: Iced latte, blueberry muffin</div>
+          <div class="order-driver">Alex Tanaka</div>
+        </div>
+
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Lawson</div>
+            <div class="order-date">July 8, 2025</div>
+          </div>
+          <div class="order-text">Order: Karaage-kun, Pocari Sweat</div>
+          <div class="order-driver">Lisa Chen</div>
         </div>
       </section>
 
+      <!-- My Deliveries Section -->
       <section class="activity-section">
         <h2>My Deliveries</h2>
-        <div class="activity-list">
-          <div class="activity-card">Delivered: Sushi Set</div>
-          <div class="activity-card">Delivered: Ramen Order</div>
-          <div class="activity-card">Delivered: Grocery Bag</div>
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Sushiro</div>
+            <div class="order-date">July 6, 2025</div>
+          </div>
+          <div class="order-text">Order: 8-piece salmon set, green tea</div>
+          <div class="order-driver">You</div>
+          <div class="requester-name">Yuki Mori</div>
+        </div>
+
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">McDonald's</div>
+            <div class="order-date">July 4, 2025</div>
+          </div>
+          <div class="order-text">Order: Teriyaki burger, fries, coke</div>
+          <div class="order-driver">You</div>
+          <div class="requester-name">Ken Sato</div>
         </div>
       </section>
     </main>
-
-    <div id="restaurant-panel" class="restaurant-panel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
-      <div class="panel-content">
-        <h2>Restaurant Name</h2>
-        <p>Reviews and details here...</p>
-        <button>Request Order</button>
-      </div>
-    </div>
-    <!-- Dark background overlay -->
-    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
 
     <div class="bottom-nav">
       <a href="orderFood.html">Order Food</a>
@@ -56,13 +73,12 @@
 
     <!-- Settings Side Panel -->
     <div id="settings-panel" class="settings-panel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()"
-        >×</a
-      >
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">×</a>
       <a href="userSettings.html">User Settings</a>
       <a href="TermsAndCond.html">Terms & Conditions</a>
       <a href="loginPage.html">Log Out</a>
     </div>
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
 
     <script>
       function openSettings() {
@@ -73,20 +89,9 @@
         document.getElementById("settings-panel").style.width = "0";
         document.getElementById("overlay").style.display = "none";
       }
-    </script>
-    <script>
+
       if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
-      }
-      function openPanel(name) {
-        document.getElementById("restaurant-panel").classList.add("open");
-        document.querySelector(".panel-content h2").textContent = name;
-        document.querySelector(".panel-content p").textContent =
-          "Here are some reviews about " + name + "...";
-      }
-
-      function closePanel() {
-        document.getElementById("restaurant-panel").classList.remove("open");
       }
     </script>
   </body>

@@ -80,14 +80,52 @@
       </div>
     </main>
 
-    <div id="restaurant-panel" class="restaurant-panel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
-      <div class="panel-content">
-        <h2>Restaurant Name</h2>
-        <p>Reviews and details here...</p>
-        <button>Request Order</button>
+      <div id="restaurant-panel" class="restaurant-panel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closePanel()">×</a>
+        <div class="panel-content">
+          <h2 class="restaurant-title">Restaurant Name</h2>
+          <div class="restaurant-info">
+            <p class="restaurant-description">Here are some reviews about this place...</p>
+
+            <!-- COMMENTS LIST (scrollable) -->
+            <div class="comments-list">
+              <div class="comment-card">Love the spicy chicken here!</div>
+              <div class="comment-card">Quick delivery and super hot food 🔥</div>
+              <div class="comment-card">Reasonable prices, very filling meals.</div>
+            </div>
+
+            <!-- Comment input -->
+            <textarea placeholder="Leave a comment..." class="comment-box"></textarea>
+            <button class="action-btn">Leave Comment</button>
+
+            <div class="or-separator">OR</div>
+
+            <!-- Order Section -->
+            <div class="order-section">
+              <textarea placeholder="Write your food order here..." class="comment-box"></textarea>
+
+              <label class="input-label" for="delivery-time">Delivery by:</label>
+              <select id="delivery-time" class="dropdown">
+                <option value="ASAP">ASAP</option>
+                <!-- Times added by JS -->
+              </select>
+
+              <label class="input-label" for="delivery-location">Delivery location (Room):</label>
+              <input type="text" id="delivery-location" class="comment-box" maxlength="3" pattern="\d{3}" placeholder="e.g., 506" />
+
+              <label class="input-label" for="reward">Reward (¥):</label>
+              <select id="reward" class="dropdown">
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+              </select>
+
+              <button class="action-btn">Post Order</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
     <!-- Dark background overlay -->
     <div id="overlay" class="overlay" onclick="closeSettings()"></div>
 
@@ -108,6 +146,36 @@
     </div>
 
     <script>
+        function generateDeliveryTimes() {
+        const now = new Date();
+        const dropdown = document.getElementById("delivery-time");
+        const startHour = 9;
+        const endHour = 17;
+
+        for (let hour = startHour; hour <= endHour; hour++) {
+          for (let minute of [0, 15, 30, 45]) {
+            const optionTime = new Date();
+            optionTime.setHours(hour, minute, 0, 0);
+
+            if (optionTime - now >= 30 * 60 * 1000) {
+              const label = optionTime.toTimeString().slice(0, 5);
+              const option = document.createElement("option");
+              option.value = label;
+              option.textContent = label;
+              dropdown.appendChild(option);
+            }
+          }
+        }
+      }
+
+      generateDeliveryTimes();
+
+      document.getElementById("delivery-location").addEventListener("input", function (e) {
+        const val = e.target.value;
+        if (!/^\d{0,3}$/.test(val)) {
+          e.target.value = val.slice(0, 3).replace(/\D/g, "");
+        }
+      });
       function openSettings() {
         document.getElementById("settings-panel").style.width = "250px";
         document.getElementById("overlay").style.display = "block";
