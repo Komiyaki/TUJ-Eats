@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TUJ Eats - Activity</title>
+    <link rel="stylesheet" href="activityStyle.css" />
+  </head>
+  <body>
+    <div class="header-bar">
+      <button class="settings-btn" onclick="openSettings()">⚙️Settings</button>
+      <img
+        src="https://www.tuj.ac.jp/sites/all/modules/custom/tu_layout/theme/img/temple-logo-t-box.svg"
+        alt="TUJ Logo"
+        class="logo-background"
+      />
+      <h1 class="header-text">TUJ Eats</h1>
+    </div>
+
+    <main class="activity-content">
+      <!-- My Requests Section -->
+      <section class="activity-section">
+        <h2>My Requests</h2>
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Starbucks Coffee</div>
+            <div class="order-date">July 10, 2025</div>
+          </div>
+          <div class="order-text">Order: Iced latte, blueberry muffin</div>
+          <div class="order-driver">Alex Tanaka</div>
+        </div>
+
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Lawson</div>
+            <div class="order-date">July 8, 2025</div>
+          </div>
+          <div class="order-text">Order: Karaage-kun, Pocari Sweat</div>
+          <div class="order-driver">Lisa Chen</div>
+        </div>
+      </section>
+
+      <!-- My Deliveries Section -->
+      <section class="activity-section">
+        <h2>My Deliveries</h2>
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">Sushiro</div>
+            <div class="order-date">July 6, 2025</div>
+          </div>
+          <div class="order-text">Order: 8-piece salmon set, green tea</div>
+          <div class="order-driver">You</div>
+          <div class="requester-name">Yuki Mori</div>
+        </div>
+
+        <div class="activity-card">
+          <div class="card-header">
+            <div class="order-title">McDonald's</div>
+            <div class="order-date">July 4, 2025</div>
+          </div>
+          <div class="order-text">Order: Teriyaki burger, fries, coke</div>
+          <div class="order-driver">You</div>
+          <div class="requester-name">Ken Sato</div>
+        </div>
+      </section>
+    </main>
+
+    <div class="bottom-nav">
+      <a href="orderFood.html">Order Food</a>
+      <a href="activity.html">Activity</a>
+      <a href="acceptOrders.html">Accept Orders</a>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settings-panel" class="settings-panel">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeSettings()">×</a>
+      <a href="userSettings.html">User Settings</a>
+      <a href="TermsAndCond.html">Terms & Conditions</a>
+      <a href="loginPage.html">Log Out</a>
+    </div>
+    <div id="overlay" class="overlay" onclick="closeSettings()"></div>
+
+    <script>
+      function openSettings() {
+        document.getElementById("settings-panel").style.width = "250px";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function closeSettings() {
+        document.getElementById("settings-panel").style.width = "0";
+        document.getElementById("overlay").style.display = "none";
+      }
+
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+  </body>
+</html>
