@@ -551,3 +551,77 @@ body.dark-mode .dropdown {
   color: #eee;
   border: 1px solid #555;
 }
+
+/* chat message */
+.chat-content {
+  height: calc(100vh - 110px); /* header + footer */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.order-details {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chat-history {
+  flex-grow: 1;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  padding: 0.5rem;
+  border-radius: 6px;
+  max-width: 80%;
+}
+
+.message.customer {
+  background-color: #e0f7fa;
+  align-self: flex-end;
+}
+
+.message.worker {
+  background-color: #fce4ec;
+  align-self: flex-start;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input textarea {
+  flex-grow: 1;
+  resize: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.chat-input button {
+  padding: 0.5rem 1rem;
+  background-color: #a41e34;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.chat-input button:hover {
+  background-color: #870d26;
+}
